@@ -1,5 +1,5 @@
 build/container: build/sdutil Dockerfile runner/*
-	docker build -t deis/slugrunner .
+	docker build -t drycc/slugrunner .
 	touch build/container
 
 build/sdutil:

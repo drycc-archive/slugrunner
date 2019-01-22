@@ -2,7 +2,7 @@ SHORT_NAME := slugrunner
 
 export GO15VENDOREXPERIMENT=1
 
-IMAGE_PREFIX ?= deis
+IMAGE_PREFIX ?= drycc
 
 include versioning.mk
 
@@ -10,7 +10,7 @@ SHELL_SCRIPTS = $(wildcard rootfs/bin/*) $(wildcard rootfs/runner/*) $(wildcard 
 
 # The following variables describe the containerized development environment
 # and other build options
-DEV_ENV_IMAGE := quay.io/deis/go-dev:0.20.0
+DEV_ENV_IMAGE := quay.io/drycc/go-dev:v0.22.0
 DEV_ENV_WORK_DIR := /go/src/${REPO_PATH}
 DEV_ENV_CMD := docker run --rm -v ${CURDIR}:${DEV_ENV_WORK_DIR} -w ${DEV_ENV_WORK_DIR} ${DEV_ENV_IMAGE}
 DEV_ENV_CMD_INT := docker run -it --rm -v ${CURDIR}:${DEV_ENV_WORK_DIR} -w ${DEV_ENV_WORK_DIR} ${DEV_ENV_IMAGE}
@@ -39,18 +39,18 @@ secrets:
 
 kube-service: kube-secrets
 	- kubectl create -f ${SVC}
-	- kubectl create -f manifests/deis-minio-secretUser.yaml
+	- kubectl create -f manifests/drycc-minio-secretUser.yaml
 
 kube-clean:
-	- kubectl delete rc deis-${SHORT_NAME}-rc
+	- kubectl delete rc drycc-${SHORT_NAME}-rc
 
 kube-mc:
-	kubectl create -f manifests/deis-mc-pod.yaml
+	kubectl create -f manifests/drycc-mc-pod.yaml
 
 mc:
-	docker build ${DOCKER_BUILD_FLAGS} -t ${DEIS_REGISTRY}/deis/minio-mc:latest mc
-	docker push ${DEIS_REGISTRY}/deis/minio-mc:latest
-	perl -pi -e "s|image: [a-z0-9.:]+\/|image: ${DEIS_REGISTRY}/|g" manifests/deis-mc-pod.yaml
+	docker build ${DOCKER_BUILD_FLAGS} -t ${DRYCC_REGISTRY}drycc/minio-mc:latest mc
+	docker push ${DRYCC_REGISTRY}drycc/minio-mc:latest
+	perl -pi -e "s|image: [a-z0-9.:]+\/|image: ${DRYCC_REGISTRY}|g" manifests/drycc-mc-pod.yaml
 
 test: test-style test-unit test-functional
 

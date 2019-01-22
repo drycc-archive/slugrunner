@@ -1,7 +1,7 @@
 name: slugrunner
-home: https://github.com/deisthree/slugrunner
+home: https://github.com/drycc/slugrunner
 version: <Will be populated by the ci before publishing the chart>
-description: Buildpack application runner for Deis Workflow.
+description: Buildpack application runner for Drycc Workflow.
 maintainers:
-  - name: Deis Team
-    email: engineering@deis.com
+  - name: Drycc Team
+    email: engineering@drycc.com
