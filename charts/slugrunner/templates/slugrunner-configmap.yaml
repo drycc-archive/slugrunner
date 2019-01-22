@@ -5,4 +5,4 @@ metadata:
   labels:
     heritage: drycc
 data:
-  image: "quay.io/{{.Values.org}}/slugrunner:{{.Values.docker_tag}}"
+  image: "{{.Values.docker_registry}}{{.Values.org}}/slugrunner:{{.Values.docker_tag}}"
