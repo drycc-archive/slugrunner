@@ -1,3 +1,5 @@
+FROM minio/mc:RELEASE.2018-11-06T01-12-20Z as mc
+
 FROM heroku/heroku:18-build
 
 RUN mkdir /app
@@ -13,9 +15,8 @@ EXPOSE 5000
 
 ADD ./runner /runner
 ADD ./bin /bin
-ADD https://github.com/drycc/object-storage-cli/releases/download/v1.0.1/objstorage-v1.0.1-linux-amd64 /bin/objstorage
-RUN chmod +x /bin/objstorage && \
-    chown slug:slug /app \
+COPY --from=mc /usr/bin/mc /bin/mc
+RUN chown slug:slug /app \
                     /runner/init \
                     /bin/get_object \
                     /bin/objstorage
