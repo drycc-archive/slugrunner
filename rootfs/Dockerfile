@@ -19,7 +19,7 @@ COPY --from=mc /usr/bin/mc /bin/mc
 RUN chown slug:slug /app \
                     /runner/init \
                     /bin/get_object \
-                    /bin/objstorage
+                    /bin/normalize_storage
 
 USER slug
 ENV HOME /app
