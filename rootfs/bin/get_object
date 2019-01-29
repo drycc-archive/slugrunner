@@ -2,6 +2,7 @@
 
 GET_PATH=slug.tgz
 
+# shellcheck disable=SC1091
 source /bin/normalize_storage
 
 mc cp minio/"${MINIO_BUCKET}/${SLUG_URL}" "$GET_PATH"
