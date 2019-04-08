@@ -5,4 +5,14 @@ metadata:
   labels:
     heritage: drycc
 data:
-  image: "{{.Values.docker_registry}}{{.Values.org}}/slugrunner:{{.Values.docker_tag}}"
+  images.json: |
+    [
+        {
+            "name": "heroku-18",
+            "image": "{{.Values.docker_registry}}{{.Values.org}}/slugrunner:{{.Values.docker_tag}}.heroku-18"
+        },
+        {
+            "name": "heroku-16",
+            "image": "{{.Values.docker_registry}}{{.Values.org}}/slugrunner:{{.Values.docker_tag}}.heroku-16"
+        }
+    ]

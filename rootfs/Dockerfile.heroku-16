@@ -1,6 +1,6 @@
 FROM minio/mc:RELEASE.2018-11-06T01-12-20Z as mc
 
-FROM heroku/heroku:18-build
+FROM heroku/heroku:16
 
 RUN mkdir /app
 RUN addgroup --quiet --gid 2000 slug && \
