@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+/installer/adduser
+/installer/install-tools
