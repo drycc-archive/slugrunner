@@ -6,7 +6,7 @@ IMAGE_PREFIX ?= drycc
 
 include versioning.mk
 
-SHELL_SCRIPTS = $(wildcard rootfs/bin/*) $(wildcard rootfs/runner/*) $(wildcard _scripts/*.sh)
+SHELL_SCRIPTS = $(wildcard rootfs/bin/*) $(wildcard rootfs/installer/*) $(wildcard rootfs/runner/*) $(wildcard _scripts/*.sh)
 
 # The following variables describe the containerized development environment
 # and other build options
