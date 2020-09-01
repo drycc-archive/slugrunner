@@ -1,4 +1,4 @@
-FROM heroku/heroku:20
+FROM drycc/stack-images:20
 
 # add default port to expose (can be overridden)
 ENV PORT 5000
