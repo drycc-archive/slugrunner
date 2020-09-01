@@ -14,9 +14,5 @@ data:
         {
             "name": "heroku-20",
             "image": "{{.Values.docker_registry}}{{.Values.org}}/slugrunner:{{.Values.docker_tag}}.heroku-20"
-        },
-        {
-            "name": "heroku-16",
-            "image": "{{.Values.docker_registry}}{{.Values.org}}/slugrunner:{{.Values.docker_tag}}.heroku-16"
         }
     ]
