@@ -1,3 +1,6 @@
+FROM minio/mc:latest as mc
+
+
 FROM drycc/stack-images:20
 
 # add default port to expose (can be overridden)
@@ -7,6 +10,7 @@ EXPOSE 5000
 ADD ./runner /runner
 ADD ./bin /bin
 ADD ./installer /installer
+COPY --from=mc /usr/bin/mc /bin/mc
 
 RUN /installer/install
 

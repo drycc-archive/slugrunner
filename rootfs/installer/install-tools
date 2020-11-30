@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-wget https://dl.min.io/client/mc/release/linux-amd64/mc -O /bin/mc
-chmod +x /bin/mc
 chown slug:slug /app \
   /runner/init \
   /bin/get_object \
