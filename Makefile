@@ -3,6 +3,7 @@ SHORT_NAME := slugrunner
 export GO15VENDOREXPERIMENT=1
 
 IMAGE_PREFIX ?= drycc
+PLATFORM ?= linux/amd64,linux/arm64
 
 include versioning.mk
 
@@ -23,6 +24,9 @@ bootstrap:
 docker-build:
 	docker build ${DOCKER_BUILD_FLAGS} -t ${IMAGE} -f rootfs/Dockerfile.${STACK} rootfs
 	docker tag ${IMAGE} ${MUTABLE_IMAGE}
+
+docker-buildx:
+	docker buildx build --platform ${PLATFORM} ${DOCKER_BUILD_FLAGS} -t ${IMAGE} -f rootfs/Dockerfile.${STACK} rootfs --push
 
 deploy: docker-build docker-push kube-pod
 
