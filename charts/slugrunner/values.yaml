@@ -1,3 +1,3 @@
 org: "drycc"
-docker_tag: "canary"
-docker_registry: ""
+image_tag: "canary"
+image_registry: ""
