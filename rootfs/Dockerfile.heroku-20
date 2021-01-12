@@ -1,7 +1,7 @@
-FROM minio/mc:latest as mc
+FROM docker.io/minio/mc:latest as mc
 
 
-FROM drycc/stack-images:20
+FROM docker.io/drycc/stack-images:20
 
 # add default port to expose (can be overridden)
 ENV PORT 5000
