@@ -3,6 +3,7 @@ SHORT_NAME := slugrunner
 export GO15VENDOREXPERIMENT=1
 
 IMAGE_PREFIX ?= drycc
+DRYCC_REGISTY ?= ${DEV_REGISTRY}
 PLATFORM ?= linux/amd64,linux/arm64
 
 include versioning.mk
@@ -11,7 +12,7 @@ SHELL_SCRIPTS = $(wildcard rootfs/bin/*) $(wildcard rootfs/installer/*) $(wildca
 
 # The following variables describe the containerized development environment
 # and other build options
-DEV_ENV_IMAGE := drycc/go-dev
+DEV_ENV_IMAGE := ${DEV_REGISTRY}/drycc/go-dev
 DEV_ENV_WORK_DIR := /go/src/${REPO_PATH}
 DEV_ENV_CMD := docker run --rm -v ${CURDIR}:${DEV_ENV_WORK_DIR} -w ${DEV_ENV_WORK_DIR} ${DEV_ENV_IMAGE}
 DEV_ENV_CMD_INT := docker run -it --rm -v ${CURDIR}:${DEV_ENV_WORK_DIR} -w ${DEV_ENV_WORK_DIR} ${DEV_ENV_IMAGE}
@@ -52,8 +53,8 @@ kube-mc:
 	kubectl create -f manifests/drycc-mc-pod.yaml
 
 mc:
-	docker build ${DOCKER_BUILD_FLAGS} -t ${DRYCC_REGISTRY}drycc/minio-mc:latest mc
-	docker push ${DRYCC_REGISTRY}drycc/minio-mc:latest
+	docker build ${DOCKER_BUILD_FLAGS} -t ${DRYCC_REGISTRY}/drycc/minio-mc:latest mc
+	docker push ${DRYCC_REGISTRY}/drycc/minio-mc:latest
 	perl -pi -e "s|image: [a-z0-9.:]+\/|image: ${DRYCC_REGISTRY}|g" manifests/drycc-mc-pod.yaml
 
 test: test-style test-unit test-functional
