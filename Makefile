@@ -23,11 +23,11 @@ bootstrap:
 	@echo Nothing to do.
 
 docker-build:
-	docker build ${DOCKER_BUILD_FLAGS} -t ${IMAGE} -f rootfs/Dockerfile.${STACK} rootfs
+	docker build ${DOCKER_BUILD_FLAGS} --build-arg STACK=${STACK} -t ${IMAGE} -f rootfs/Dockerfile rootfs
 	docker tag ${IMAGE} ${MUTABLE_IMAGE}
 
 docker-buildx:
-	docker buildx build --platform ${PLATFORM} ${DOCKER_BUILD_FLAGS} -t ${IMAGE} -f rootfs/Dockerfile.${STACK} rootfs --push
+	docker buildx build --platform ${PLATFORM} ${DOCKER_BUILD_FLAGS} --build-arg STACK=${STACK} -t ${IMAGE} -f rootfs/Dockerfile rootfs --push
 
 deploy: docker-build docker-push kube-pod
 

@@ -12,7 +12,8 @@ steps:
   pull: if-not-exists
   privileged: true
   commands:
-  - make docker-build test
+  - STACK=18 make docker-build test
+  - STACK=20 make docker-build test
   environment:
     VERSION: ${DRONE_TAG:-latest}-linux-amd64
     DEV_REGISTRY: ${DEV_REGISTRY:-docker.io}
@@ -29,8 +30,8 @@ steps:
   privileged: true
   commands:
   - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-  - STACK=heroku-18 make docker-build docker-immutable-push
-  - STACK=heroku-20 make docker-build docker-immutable-push
+  - STACK=18 make docker-build docker-immutable-push
+  - STACK=20 make docker-build docker-immutable-push
   environment:
     VERSION: ${DRONE_TAG:-latest}-linux-amd64
     DEV_REGISTRY:
@@ -68,8 +69,8 @@ steps:
   privileged: true
   commands:
   - echo $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
-  - STACK=heroku-18 make docker-build docker-immutable-push
-  - STACK=heroku-20 make docker-build docker-immutable-push
+  - STACK=18 make docker-build docker-immutable-push
+  - STACK=20 make docker-build docker-immutable-push
   environment:
     VERSION: ${DRONE_TAG:-latest}-linux-arm64
     DEV_REGISTRY:
